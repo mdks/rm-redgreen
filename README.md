@@ -17,6 +17,6 @@ p [{:oh=>"this"}, "is", :convenient].inspect, :yellow
 ```
 ... which does an NSLog in color
 
-Files to really notice are app/lib/rm-ansiterm.rb and spec/00-redgreen.rb
+Files to really notice are app/rm-ansiterm.rb and spec/00-redgreen.rb
 
 00-redgreen.rb is named as such so that the Bacon hack loads before any of your real specs do.
