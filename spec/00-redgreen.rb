@@ -1,3 +1,5 @@
+return if Term.nil?
+
 module Bacon
   module SpecDoxOutput
     
