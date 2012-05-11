@@ -1,7 +1,7 @@
 describe "Application 'rm-redgreen'" do
 
   it "has bacon" do
-    Bacon.to_s.should.equal "Bacon"
+    Bacon.nil?.should.equal false
   end
 
   it "is in development mode" do
