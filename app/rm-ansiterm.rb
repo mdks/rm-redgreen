@@ -1,7 +1,5 @@
 return unless App.development?
 
-# The following module was fitted for RubyMotion by removing the eval in the original version
-
 module Term
   # The ANSIColor module can be used for namespacing and mixed into your own
   # classes.
