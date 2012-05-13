@@ -14,15 +14,15 @@ Features
 Instructions
 -----
 
-# Copy 00-redgreen.rb into spec/
-# Load rm-ansiterm.rb in your app/
-# Run `rake spec`
+- Copy 00-redgreen.rb into spec/
+- Load rm-ansiterm.rb in your app/
+- Run `rake spec`
 
 For using Guard I have prepared a Gemfile & Guardfile
-# Add the Gemfile & Guardfile to your project
-# Run `bundle install`
-# Run `guard`
-# Red, green, refactor!
+- Add the Gemfile & Guardfile to your project
+- Run `bundle install`
+- Run `guard`
+- Red, green, refactor!
 
 Output Styles
 -----
