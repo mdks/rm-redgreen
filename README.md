@@ -10,6 +10,7 @@ Features
 * Autotest functionality with Guard
 * A ported ansiterm.rb for terminal colors
 * 3 styles of colorized Bacon output (00-redgreen.rb)
+* nearly-headless iOS Simulator via an AppleScript in the Guardfile
 
 Instructions
 -----
