@@ -38,7 +38,15 @@ Default style is `:focused`
 Extras
 -----
 
-You can do things like this in your app, using the included ansiterm.rb port.
+```ruby
+# This is at the end of the rm-ansiterm.rb file, although maybe it should not be:
+class String
+  def method_missing(sym, *args, &block)
+    Term::ANSIColor.send(sym) { self } rescue super
+  end
+end
+```
+
 ```ruby
 class Kernel
   def p(arg, style=nil)
