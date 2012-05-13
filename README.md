@@ -39,7 +39,7 @@ Extras
 -----
 
 ```ruby
-# This is at the end of the rm-ansiterm.rb file, although maybe it should not be:
+# string.rb
 class String
   def method_missing(sym, *args, &block)
     Term::ANSIColor.send(sym) { self } rescue super
@@ -48,7 +48,7 @@ end
 ```
 
 ```ruby
-# This is in kernel.rb in this project.
+# kernel.rb
 class Kernel
   def p(arg, style=nil)
     if Term.nil?
@@ -60,7 +60,7 @@ class Kernel
 end
 ```
 
-Let beautiful NSLog with it like so:
+With code like the above, you can do colorful NSLog output in this way:
 
 ```ruby
 p "I like Cyan", :cyan
@@ -68,4 +68,4 @@ p "Sometimes this is hard to read...", :blue
 p [{:oh=>"this"}, "is", :convenient].inspect, :yellow
 ```
 
-Please send pull requests if you do something cool with this or make new styles!
+Pull requests are appreciated!
