@@ -6,7 +6,7 @@ hide_sim_script = %{
   tell application "Finder"
     set visible of process "iOS Simulator" to false
     repeat while (visible of process "iOS Simulator" is false)
-      delay 0.5
+      delay 0.1
     end repeat
     set visible of process "iOS Simulator" to false
   end tell
