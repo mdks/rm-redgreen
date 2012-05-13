@@ -48,6 +48,7 @@ end
 ```
 
 ```ruby
+# This is in kernel.rb in this project.
 class Kernel
   def p(arg, style=nil)
     if Term.nil?
@@ -59,7 +60,7 @@ class Kernel
 end
 ```
 
-And then do a beautiful NSLog with it like so:
+Let beautiful NSLog with it like so:
 
 ```ruby
 p "I like Cyan", :cyan

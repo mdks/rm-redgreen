@@ -556,12 +556,3 @@ module Term
     extend self
   end
 end
-
-class String
-  def method_missing(sym, *args, &block)
-    Term::ANSIColor.send(sym) { self } rescue super
-  end
-end
-
-$stdout.puts Term::ANSIColor.send(:green) { "ansiterm loaded :)" }
-$stdout.puts Term::ANSIColor.send(:red) { "You are in development mode" }
