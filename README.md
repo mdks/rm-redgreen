@@ -4,6 +4,11 @@ rm-redgreen
 RedGreen clone (colorful rake spec) for RubyMotion.
 The project includes a ported version of ansiterm & can auto-test using Guard.
 
+Github Pages URL
+-----
+
+http://mdks.github.com/rm-redgreen/
+
 Features
 -----
 
