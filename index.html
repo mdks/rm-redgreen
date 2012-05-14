@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>rm-redgreen by mdks</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/mdks/rm-redgreen">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/mdks/rm-redgreen/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/mdks/rm-redgreen/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>rm-redgreen</h1>
+          <p>Slick lightweight RubyMotion test tools with integrated automation for all your BDD needs. Programmer tested, QA engineer approved. </p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/mdks">mdks</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h2>Description</h2>
+
+<p>RedGreen clone (colorful rake spec) for RubyMotion's Bacon with a couple styles. Includes Autotest functionality, an applescript to make your iOS sim headless, and a ported terminal color library you may use with NSLog.</p>
+
+<h2>Features</h2>
+
+<ul>
+<li>Autotest functionality with Guard</li>
+<li>A ported ansiterm.rb for terminal colors</li>
+<li>3 styles of testing output (00-redgreen.rb)</li>
+<li>nearly-headless iOS Simulator via an AppleScript in the Guardfile</li>
+</ul><h2>Instructions</h2>
+
+<ul>
+<li>Copy 00-redgreen.rb into spec/</li>
+<li>Load rm-ansiterm.rb in your app/</li>
+<li>Run <code>rake spec</code>
+</li>
+</ul><p>For using Guard I have prepared a Gemfile &amp; Guardfile</p>
+
+<ul>
+<li>Add the Gemfile &amp; Guardfile to your project</li>
+<li>Run <code>bundle install</code>
+</li>
+<li>Run <code>guard</code>
+</li>
+<li>Red, green, refactor!</li>
+</ul><h2>Output Styles</h2>
+
+<p>There are currently 3 styles, settable at the top of 00-redgreen.rb</p>
+
+<ul>
+<li>
+<code>:focused</code> only shows one backtrace/error at a time, and uses the <code>.</code>, <code>?</code>, and <code>F</code> for all the rest, keeping you "focused" on greening.</li>
+<li>
+<code>:full</code> shows everything, this is the first style I created.</li>
+<li>
+<code>:original</code> just reverts back to the standard RubyMotion style (no colors)</li>
+</ul><p>Default style is <code>:focused</code></p>
+
+<h2>Screenshots</h2>
+
+<h3>Focused (default)</h3>
+
+<p><img src="http://i.imgur.com/PxMKt.jpg" alt="Focused"></p>
+
+<h3>Full</h3>
+
+<p><img src="http://i.imgur.com/OM2Ic.jpg" alt="Full"></p>
+
+<h3>Original (comes with RubyMotion)</h3>
+
+<p><img src="http://i.imgur.com/rhsPE.png" alt="Original"></p>
+
+<h2>Extras</h2>
+
+<p>Includes a ported ansiterm.rb, a general terminal coloring library.</p>
+
+<div class="highlight">
+<pre><span class="c1"># string.rb</span>
+<span class="k">class</span> <span class="nc">String</span>
+  <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">sym</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="no">Term</span><span class="o">::</span><span class="no">ANSIColor</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">sym</span><span class="p">)</span> <span class="p">{</span> <span class="nb">self</span> <span class="p">}</span> <span class="k">rescue</span> <span class="k">super</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+
+
+<div class="highlight">
+<pre><span class="c1"># kernel.rb</span>
+<span class="k">class</span> <span class="nc">Kernel</span>
+  <span class="k">def</span> <span class="nf">p</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+    <span class="k">if</span> <span class="no">Term</span><span class="o">.</span><span class="n">nil?</span>
+      <span class="no">NSLog</span> <span class="n">arg</span>
+    <span class="k">else</span>
+      <span class="no">NSLog</span><span class="p">(</span><span class="n">style</span> <span class="p">?</span> <span class="n">arg</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">style</span><span class="p">)</span> <span class="p">:</span> <span class="n">arg</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre>
+</div>
+
+
+<p>With code like the above, you can do colorful NSLog output in this way:</p>
+
+<div class="highlight">
+<pre><span class="nb">p</span> <span class="s2">"I like Cyan"</span><span class="p">,</span> <span class="ss">:cyan</span>
+<span class="nb">p</span> <span class="s2">"Sometimes this is hard to read..."</span><span class="p">,</span> <span class="ss">:blue</span>
+<span class="nb">p</span> <span class="o">[</span><span class="p">{</span><span class="ss">:oh</span><span class="o">=&gt;</span><span class="s2">"this"</span><span class="p">},</span> <span class="s2">"is"</span><span class="p">,</span> <span class="ss">:convenient</span><span class="o">].</span><span class="n">inspect</span><span class="p">,</span> <span class="ss">:yellow</span>
+</pre>
+</div>
+
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-20448261-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
